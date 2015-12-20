@@ -1,3 +1,4 @@
 # divers
 
-The goal of this repository is to keep all my scripts
+The goal of this repository is to keep all my scripts from work trying to keep them
+organized
