@@ -1,0 +1,1 @@
+xargs --arg-file=t.sh --max-procs=18 --replace --verbose /bin/sh -c "{}"

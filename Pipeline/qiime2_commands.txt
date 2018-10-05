@@ -1,0 +1,43 @@
+## Example of the reads format
+
+## PB1_PB1_L001_R1_001.fastq.gz  Foward Reads
+## PB1_PB1_L001_R2_001.fastq.gz Reverse Reads
+
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path Test \
+  --input-format CasavaOneEightSingleLanePerSampleDirFmt \
+  --output-path Test-paired-end.qza
+
+qiime demux summarize \
+  --i-data demux-paired-end.qza \
+  --o-visualization demux.qzv
+
+qiime tools view demux.qzv
+
+qiime cutadapt trim-paired \
+	--i-demultiplexed-sequences demux-paired-end.qza \
+  --p-cores 5 \
+	--p-front-f CCTACGGGNGGCWGCAG --p-front-r GACTACDBGGGTATCTAATCC \
+	--o-trimmed-sequences trimmed-paired-end.qza --verbose | tee TestCutadaptStdout.txt # Check in this file that all primers were removed
+
+qiime demux summarize \
+  --i-data trimmed-paired-end.qza \
+  --o-visualization trimmed-demux.qzv
+
+qiime tools view trimmed-demux.qzv
+
+#Dada2
+qiime dada2 denoise-paired \
+	--i-demultiplexed-seqs trimmed-paired-end.qza \
+	--o-table table-dada2.qza \
+	--o-representative-sequences rep-seqs-dada2.qza \
+	--p-trunc-len-f 260 \
+	--p-trunc-len-r 180 \
+  --p-n-threads 16 \
+  --o-denoising-stats stats-dada2.qza \
+	--verbose
+
+qiime feature-table summarize \
+  --i-table table-dada2.qza \
+  --o-visualization table-dada2.qzv
