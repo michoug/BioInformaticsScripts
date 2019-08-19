@@ -3,6 +3,14 @@
 ## PB1_PB1_L001_R1_001.fastq.gz  Foward Reads
 ## PB1_PB1_L001_R2_001.fastq.gz Reverse Reads
 
+or 
+
+# sample-id	forward-absolute-filepath	reverse-absolute-filepath
+# 4122-Plate1-A10-MS357wF	/home/michoug/Desktop/MangroseSediment/NoPrimers/4122-Plate1-A10-MS357wF_R1.fastq.gz	/home/michoug/Desktop/MangroseSediment/NoPrimers/4122-Plate1-A10-MS357wF_R2.fastq.gz
+# 4122-Plate1-G5-MS357wF	/home/michoug/Desktop/MangroseSediment/NoPrimers/4122-Plate1-G5-MS357wF_R1.fastq.gz	/home/michoug/Desktop/MangroseSediment/NoPrimers/4122-Plate1-G5-MS357wF_R2.fastq.gz
+# 4122-Plate2-F12-MS357wF	/home/michoug/Desktop/MangroseSediment/NoPrimers/4122-Plate2-F12-MS357wF_R1.fastq.gz	/home/michoug/Desktop/MangroseSediment/NoPrimers/4122-Plate2-F12-MS357wF_R2.fastq.gz
+
+
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path Test \

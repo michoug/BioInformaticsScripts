@@ -1,0 +1,1 @@
+iqtree -s EV16_close.fasta  -m TEST -bb 1000 -alrt 1000 -nt 6 -o RS_GCF_002079945.1
